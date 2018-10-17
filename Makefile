@@ -12,3 +12,10 @@ setup-coredns:
 setup-forwardif:
 	@mkdir -p ${GOPATH}/src/github.com/b4fun
 	@git clone --depth=1 https://github.com/b4fun/forwardif.git ${GOPATH}/src/github.com/b4fun/forwardif
+
+.PHONY: build
+build:
+	@sed -i -e \
+	    's/forward:forward/forwardif:github.com\/b4fun\/forwardif\/plugin\nforward:forward/g' \
+	    ${GOPATH}/src/github.com/coredns/coredns/plugin.cfg
+	@cd ${GOPATH}/src/github.com/coredns/coredns && make
