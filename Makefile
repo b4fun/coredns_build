@@ -11,7 +11,8 @@ setup-coredns:
 .PHONY: setup-forwardif
 setup-forwardif:
 	@mkdir -p ${GOPATH}/src/github.com/b4fun
-	@git clone --depth=1 https://github.com/b4fun/forwardif.git ${GOPATH}/src/github.com/b4fun/forwardif
+	@go get -u github.com/b4fun/forwardif/plugin
+	@go get -u github.com/b4fun/adblockdomain
 
 .PHONY: build
 build:

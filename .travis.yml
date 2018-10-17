@@ -10,8 +10,6 @@ services:
 
 before_script:
   - make setup
-  - ls -lh $GOPATH/src/github.com/b4fun/forwardif
-  - ls -lh $GOPATH/src/github.com/coredns/coredns
 
 script:
   - make build
