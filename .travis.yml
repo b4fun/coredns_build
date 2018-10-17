@@ -1,0 +1,14 @@
+sudo: required
+dist: trusty
+
+language: go
+go:
+  - '1.11.x'
+
+services:
+  - docker
+
+before_script:
+  - make setup
+  - ls -lh $GOPATH/src/github.com/b4fun/forwardif
+  - ls -lh $GOPATH/src/github.com/coredns/coredns
