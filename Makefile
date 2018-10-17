@@ -22,10 +22,11 @@ build-binary:
 	@sed -i -e \
 	    's/forward:forward/forwardif:github.com\/b4fun\/forwardif\/plugin\nforward:forward/g' \
 	    ${GOPATH}/src/github.com/coredns/coredns/plugin.cfg
-	echo ${DOCKER}
+	@sed -i -e \
+	    's/DOCKER:=//g' \
+	    ${GOPATH}/src/github.com/coredns/coredns/Makefile.release
 	@cd ${GOPATH}/src/github.com/coredns/coredns && make -f Makefile.release build
 
 .PHONY: build-docker
 build-docker:
-	echo ${DOCKER}
 	@cd ${GOPATH}/src/github.com/coredns/coredns && make -f Makefile.release docker-build
