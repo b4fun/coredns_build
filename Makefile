@@ -33,3 +33,9 @@ build-binary:
 .PHONY: build-docker
 build-docker:
 	@cd ${GOPATH}/src/github.com/coredns/coredns && make -f Makefile.release docker-build
+
+.PHONY: push-docker
+push-docker:
+	@echo $(DOCKER_PASSWORD) | docker login -u $(DOCKER_LOGIN) --password-stdin
+	docker push b4fun/coredns:coredns-amd64
+	docker push b4fun/coredns:coredns-arm64

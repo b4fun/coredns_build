@@ -1,18 +1,18 @@
 sudo: required
 dist: trusty
-
 env:
+  matrix:
   - DOCKER=b4fun
-
+  global:
+  - secure: 6hYgyy1413/blH4LWYDumVnasyRvqae43HCR2SUfaHIJtizn6gItMTJYKWKYznJWobkhnQexuYmFhUF5+RWej/5RsMCvqF3ox/iB1vcn2R406/mcp1RSmVT2L5hs9HRaqeMpnfehFKkJ/vnm8rCj+8DZ7iBCVlQ/DxmwlPiVXEQWNPgkgsrRa354EpM7xUdzvHgdQiSL3XgPKs9S+FfyCOiGvIKzSMbBad2EytqWP+CoLb1FrRMPauH3lWJCbdl+2HNTI1ovDUM5MzmbW0Dd8Bo7q6bCB6yZ8rkRKOxHIlklxIHNvImOoRXvtzp2ay0H5M3nUQoH/ZbmbCOqu5hb0aewFl7hY8JKYRkjx+BM64uxsV04JuSzuKPvy7j7YQ8y9w06IJswO7HRlkDNq8bx8dTh5CKVrdODyQk4AeN3lqZl2c7gfdN/UBGVKSWzjUvKw3M4+yzx/Pn24NSRsp02mFm8n7aAky9nbZ3SrH3FCQSHiYUrmRbVxbt7d4tqx9JpTMX6fzDNTn2ykfhAWyDadh8snrPxX0RCerozOnTHHi5Ix190r479JzzQkGl39qqd5ximno74QOMQrhd+Qw65neDnHTsQ1r9BngwLFIV+Yfs/0wXroLl/64301zFohHcV/Ld2a50L1b+37Zv003eS0zBLFoKwhWNnnnPBqQ2XM7c=
+  - secure: wW1alscdepYnkyr0jtjDJ0fG9W6TcMyhSZFStnIxU0JHZl5VkHJDJVDuOlWEYx2ViFl/ebpA7VOEAwgvRuPCpXnz4eQ/RJcK8geZ33DQyAhR6qxZoj8D1KB8cSM7jj9nDfZWpWZ8kQH8sfaEEHx0WepEDgCWhEV9s2pCQOyi5ZFzTzqBezvMp58NE3nHkYtWUngK5Bq3b5FKGxXpIvjZlQryY8mgaur6pzQSNcLa9cf6qO7jSCtRpaGMzry0V3PRWwMpV84pqqgmhpHlgRfYjvsz8CG44dZcapchT8B2rWStjGnS+dXWqlbM/hpb9I6xapvaBFhUo1wJJcTsdpxg+U8h1Tievbuj0niToL3LEPWZjCIaqemIMg4B8dSye10QaTtm9LoMcDXlUO4b0npfP15hD76MNXwUGv5belRjT3nZe7MjSp9BqyExQQ1MqtlyeiPxJMqVpU5uAfHigbZ9Q30qqcZozD6uDah0+IsP8EcEbQKykc13+3S3zaEcTj8V5jkdJ3yA52NIsEkjeItDPGA+0/odN+w7jsXOtZRaxWmqJDB+eeVmz6MHKZzRfbUlTtnoFU7z4rnAk65gQW4WITR+w2qFNfYzRsyG8fYRUNrOHVbq/ZXqrCbX/2/e0xSldBl9xjwy7xyt5ha6TJAEmblC950XDJgtVMc6pXXVCdw=
 language: go
 go:
-  - '1.11.x'
-
+- 1.11.x
 services:
-  - docker
-
+- docker
 before_script:
-  - make setup
-
+- make setup
 script:
-  - make build
+- make build
+- make push-docker
