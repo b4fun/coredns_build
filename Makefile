@@ -28,6 +28,7 @@ build-binary:
 	@sed -i -e \
 	    's/LINUX_ARCH:=amd64 arm arm64 ppc64le s390x/LINUX_ARCH:=amd64 arm64/g' \
 	    ${GOPATH}/src/github.com/coredns/coredns/Makefile.release
+	@cd ${GOPATH}/src/github.com/coredns/coredns && make core/dnsserver/zdirectives.go
 	@cd ${GOPATH}/src/github.com/coredns/coredns && make -f Makefile.release build
 
 .PHONY: build-docker
