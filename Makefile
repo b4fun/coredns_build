@@ -15,7 +15,7 @@ setup-forwardif:
 	@go get -u github.com/b4fun/adblockdomain
 
 .PHONY: build
-build: build-binary
+build: build-binary build-docker
 
 .PHONY: build-binary
 build-binary:
@@ -24,6 +24,9 @@ build-binary:
 	    ${GOPATH}/src/github.com/coredns/coredns/plugin.cfg
 	@sed -i -e \
 	    's/DOCKER:=//g' \
+	    ${GOPATH}/src/github.com/coredns/coredns/Makefile.release
+	@sed -i -e \
+	    's/LINUX_ARCH:=amd64 arm arm64 ppc64le s390x/LINUX_ARCH:=amd64 arm64/g' \
 	    ${GOPATH}/src/github.com/coredns/coredns/Makefile.release
 	@cd ${GOPATH}/src/github.com/coredns/coredns && make -f Makefile.release build
 
