@@ -15,8 +15,17 @@ setup-forwardif:
 	@go get -u github.com/b4fun/adblockdomain
 
 .PHONY: build
-build:
+build: build-binary
+
+.PHONY: build-binary
+build-binary:
 	@sed -i -e \
 	    's/forward:forward/forwardif:github.com\/b4fun\/forwardif\/plugin\nforward:forward/g' \
 	    ${GOPATH}/src/github.com/coredns/coredns/plugin.cfg
-	@cd ${GOPATH}/src/github.com/coredns/coredns && make
+	@cd ${GOPATH}/src/github.com/coredns/coredns
+	@make -f Makefile.release build
+
+.PHONY: build-docker
+build-docker:
+	@cd ${GOPATH}/src/github.com/coredns/coredns
+	@make -f Makefile.release docker-build
